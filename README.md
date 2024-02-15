@@ -1,4 +1,4 @@
-Backup Script README
+Backup Script 
 
 Este é um script em Bash para criar backups de um diretório de origem para um diretório de destino. Ele compacta o diretório de origem em um arquivo .tar.gz com a data atual e o move para o diretório de destino especificado.
 Como usar
