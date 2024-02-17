@@ -1,24 +1,31 @@
 #!/bin/bash
 
-#definindo direct creter
+# Definindo as variáveis
 diretorio_origem="/home/slack/Desktop/"
-diretorio_criacao="/home/slack/Desktop/"
+diretorio_destino="/home/slack/Desktop/backup/"
 
-#verificar se for criado 
-if [ ! -d "$diretorio_origem"]; then 
-  mkdir -p  $diretorio_destino 
-  fi 
+# Verificar se o diretório de origem existe
+if [ ! -d "$diretorio_origem" ]; then
+  echo "Diretório de origem não existe. Criando..."
+  mkdir -p "$diretorio_origem"
+fi
 
-  #criando um nome do arquivo 
+# Verificar se o diretório de destino existe
+if [ ! -d "$diretorio_destino" ]; then
+  echo "Diretório de destino não existe. Criando..."
+  mkdir -p "$diretorio_destino"
+fi
+
+# Criar um nome de arquivo
 data_criacao=$(date +"%Y-%m-%d")
 arquivo_backup="backup_$data_criacao.tar.gz"
 
-# Verifique se o backup foi bem-sucedido
+# Fazer o backup
+tar -czvf "$diretorio_destino/$arquivo_backup" -C "$diretorio_origem" .
+
+# Verificar se o backup foi bem-sucedido
 if [ $? -eq 0 ]; then
-    echo "cria concluído com sucesso em $diretorio_destino/$arquivo_backup"
+  echo "Backup criado com sucesso em $diretorio_destino/$arquivo_backup"
 else
-    echo "Erro ao fazer o backup."
+  echo "Erro ao fazer o backup."
 fi
-
-
-
